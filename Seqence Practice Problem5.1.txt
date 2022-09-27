@@ -1,0 +1,53 @@
+D A Y -- 05 (PRACTICE PROBLEM)
+--------------------------------------------------
+Sequences Practice Problem
+1.
+Use Random Function (( RANDOM )) to get Single Digit>>
+((RANDOM%10))
+2.
+Use Random to get Dice Number between 1 to 6>>
+#!/bin/bash
+
+randomNo=$((RANDOM%6 + 1))
+echo "New Number : $randomNo";
+
+3.
+Add two random dice number and print the result>>
+#!/bin/bash
+
+firstDiceNo=$((RANDOM%6 + 1))
+secondDiceNo=$((RANDOM%6 + 1))
+add=$(($firstDiceNo + $secondDiceNo))
+echo "Summation of Two Dice Number : $add";
+4.
+Write a program that reads 5 Random 2 Digit values , then find their
+sum and the average>>
+
+5.
+a. 1ft = 12 in then 42 in = ? ft>>
+#!/bin/bash
+
+read -p "Enter how many feet : " feet;
+unit=$(($feet / 12))
+unit2=$(($feet % 12))
+echo "After Conversion : $unit feet and $unit2 inch";
+b. Rectangular Plot of 60 feet x 40 feet in meters>>
+#!/bin/bash
+
+length=60;
+breadth=40;
+unit=$((($length * 328) / 1000 ))
+unit2=$((($breadth * 328) / 1000 ))
+area=$(($unit * $unit2))
+echo "After Conversion : ($unit m. * $unit2 m.)and Area of Plot: $area sqmt.";
+c. Calculate area of 25 such plots in acres>>
+#!/bin/bash
+
+length=60;
+breadth=40;
+unit=$((($length * 328) / 1000 ))
+unit2=$((($breadth * 328) / 1000 ))
+area=$(($unit * $unit2))
+forallplot=$(($area * 25))
+acre=$(($forallplot / 4047))
+echo "Total Area of all Plot : $acre Acre"
