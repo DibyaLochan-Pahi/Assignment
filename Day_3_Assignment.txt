@@ -1,0 +1,242 @@
+L I N U X    C O M M A N D S ( DAY  03  PRACTICE   PROBLEM )
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+1.
+a) $ cat /etc/passwd
+cat: /etc/passwd: No such file or directory
+
+b)$ cat /etc/passwd | awk '{print $1}'
+cat: /etc/passwd: No such file or directory
+[/etc/passwd did not support in GitBash]
+-------------------------------------------------------------------------------------------------------------------
+2.
+a)
+$ touch abc.txt def.txt ghi.txt jkl.txt
+b)
+$ ls
+abc.txt  def.txt  ghi.txt  jkl.txt
+c)
+nano segregate.sh
+#!/bin/bash
+
+for file in `ls *.txt`
+do
+fileName=`echo $file | awk -F. '{print $1" "$2}'`;
+echo $fileName;
+done
+
+$ ./segregate.sh
+abc txt
+def txt
+ghi txt
+jkl txt
+
+d)
+$ nano crfldr.sh
+
+#!/bin/bash
+
+for file in `ls *.txt`
+do
+fileName=`echo $file | awk -F. '{print $1}'`;
+mkdir $fileName;
+done
+e)
+$ nano mvFileToFldr.sh
+
+#!/bin/bash
+
+for file in `ls *.txt`
+do
+fileName=`echo $file | awk -F. '{print $1}'`;
+mkdir $fileName;
+cp -r $file $folderName;
+done
+f)
+$ nano abvAllstep.sh
+#!/bin/bash
+
+for file in `ls *.txt`
+do
+fileName=`echo $file | awk -F. '{print $1}'`;
+if [ -d $fileName ]
+then
+        rm -r $fileName;
+fi
+mkdir $fileName;
+cp -r $file $folderName;
+done
+------------------------------------------------------------------------------------------------------------------------
+3.
+a)
+$ touch abc.log.1 def.log.1 ghi.log.1 jkl.log.1 mno.log.1
+b)
+ls -p
+c)
+$ nano segregate3.sh
+#!/bin/bash
+
+for file in `ls *.log.1`
+do
+fileName=`echo $file | awk -F. '{print $1" "$2" "$3}'`;
+echo $fileName;
+done
+d)
+printf "%(%d-%m-%Y)T\n"
+e)
+for file in *.log.1
+ do
+ fileName=ècho $file | awk -F. '{print $1}'`;
+ echo $fileName;
+ date '+%d-%m-%Y';
+ newFile=$fileName-`date '+%d-%m-%Y'`;
+echo $newFile;
+ printf "\n";
+ if [ -s $newFile ]
+   then  
+         rm -r $newFile;
+ fi
+ cp $file $newFile.log;
+ done
+-----------------------------------------------------------------------------------------------------------------------------
+4.
+a)
+find /var/log -mtime -7
+b)
+#!/bin/bash
+
+for file in cat access.log
+do
+fileName=`find -mtime -7`
+mv $fileName ~/backup;
+done
+-------------------------------------------------------------------------------------------------------------------------------
+5.
+a)
+$ cat /var/log/httpd/access.log
+b)
+$ cat /var/log/httpd/access.log | awk '{print $15}'
+
+c)
+$ cat access.log | awk '{print NR ">>" $15}' | grep http
+d)
+$ cat access.log | sort -n | uniq -u | awk -F/ '{print NR "/" $15}'  | tail -4
+--------------------------------------------------------------------------------------------------------------------------------
+6.
+a)
+$ cat /var/log/httpd/access.log
+b)
+$ cat /var/log/httpd/access.log | awk '{print $15}'
+
+c)
+$ cat access.log | awk '{print NR "/" $15}' | grep http
+d)
+$ cat access.log | sort -n | uniq -u | awk -F/ '{print NR "/" $15}' | tail -4
+---------------------------------------------------------------------------------------------------------------------------------
+7.
+a)
+$ cat access.log
+b)
+$ cat access.log | sort -n | awk '{print NR "//" $4 " " $9 " "$10}'
+c)
+cat access.log | sort -n | awk '{print NR "//" $9 " "$10}'
+d)
+ cat access.log | sort -n | uniq -u | awk -F/ '{print NR "/" $9}' | tail -4
+
+----------------------------------------------------------------------------------------------------------------------------------
+8.
+a)
+$ cat access.log
+b)
+$ cat access.log | awk '{print $16}'
+c)
+cat access.log | awk '{print NR "//" $16}'
+d)
+ cat access.log | sort -n | uniq -u | awk -F/ '{print NR "/" $16}' | tail -4
+------------------------------------------------------------------------------------------------------------------------------------
+9)
+a)
+$ nano checkFolder.sh
+#!/bin/bash
+
+if [ -d "/g/linux-content/abc.txt" ]
+then
+        echo "Folder Exists";
+fi
+
+b)
+$ nano checkFolder.sh
+#!/bin/bash
+
+if [ -d "/g/linux-content/abc.txt" ]
+then
+        echo "Folder Exists";
+else
+        echo "Folder Doesn't Exists";
+fi
+------------------------------------------------------------------------------------------------------------------------------------
+10.
+a)
+$ echo "hello"
+b)
+$ $?
+c)
+$ ls
+d)
+$ echo $?
+------------------------------------------------------------------------------------------------------------------------------------
+11.
+a)
+ env | grep usersecret
+b)
+$ nano environment.sh
+
+#!/bin/bash
+if[[ 'grep 'usersecret' env' ]];
+then
+        echo "Exists";
+else
+        echo "Not Exists"
+fi
+c)
+$ env usersecret = "dH34xjaa23"
+----------------------------------------------------------------------------------------------------------------------------------
+12.
+$ grep -irwn systemd /var/log
+-----------------------------------------------------------------------------------------------------------------------------------
+13)
+$ watch -n 1 'ps -eo pid,ppid,cmd,%mem,%cpu--sort=-%cpu | head'
+-----------------------------------------------------------------------------------------------------------------------------------
+14)
+i >
+a) 
+$ cat data.csv | awk {$4>10000} {print NR " " $2" " $7}'
+b)
+$ cat data.csv | awk '{print $2 " " $7}'
+ii >>
+a)
+$ cat data.csv | grep CAPTAIN | awk '{print $7}'
+b)
+$ cat data.csv | grep -i CAPTAIN | awk '{sum+=$7}END{print sum}'
+iii>>>
+a)
+$ $ cat data.csv | awk '{$5>=7000 && $5<=10000}'
+b)
+$ cat data.csv | awk '{$5>=7000 && $5<=10000}END{print $3 " "$5}'
+iv>>>>
+a)
+$ cat data.csv | awk '{sum+=$4}END{print sum/NR}'
+b)
+$ cat data.csv | awk '{sum+=$4}END{print sum/NR}'
+---------------------------------------------------------------------------------------------------------------------------------
+15.
+a)
+$ mkdir original updated
+b)
+$ cp original-file.sh original/
+$ cp updated-file.sh updated/
+c)
+diff -q original/ updated/
+d)
+cp -r original/ original-backup/
+e)
+diff -q updated/ original-backup/
